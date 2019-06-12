@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Drag & drop.</title>
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    <style>
+      .drop-zone li{display: block; height:20px; float: left; margin-right:5px;padding:2px 5px 2px; border-radius: 3px;}
+      #topbar{height:120px; width: 100%}
+    </style>
+</head>
+
+<body>
+  <section id=topbar></section>
+  <section id="Select-Word">
+  <h2>Select-Word</h2>
+  <ul class="drop-zone" id="source">
+  </ul>
+</section>
+
+<section id="Here">
+  <h2>Here</h2>
+  <ul class="drop-zone" id="target">
+  </ul>
+</section>
+
+    <p id="entry"> </p>
+
+  
+  <script src='https://thibaultjanbeyer.github.io/DragSelect/ds.min.js'></script>
+  
+
+  
+    <script>
+      var tt = "Don't be that way. Fall apart twice a day. I just wish you could feel what you say. Show, never tell. But I know you too well. Kind of mood that you wish you could sell. If teardrops could be bottled. There'd be swimming pools filled by models. Told that tight dress is what makes you a whore. If 'I love you' was a promise. Would you break it, if you're honest. Tell the mirror what you know she's heard before. I don't wanna be you anymore. Hands, hands getting cold. Losing feeling's getting old. Was I made from a broken mold ? Hurt, I can't shake. We've made every mistake. Only you know the way that I break. If teardrops could be bottled. There'd be swimming pools filled by models. Told that tight dress is what makes you a whore. If 'I love you' was a promise. Would you break it, if you're honest. Tell the mirror what you know she's heard before. I don't wanna be you. I don't wanna be you. I don't wanna be you... anymore.";
+
+      var ttSplit = tt.split(" ");
+      for(var i=0; i<ttSplit.length; i++){
+        var l = document.createElement("li");
+        l.draggable = true;
+        l.innerHTML = "<span>" + ttSplit[i] + "</span>";
+        l.className = "item";
+        source.appendChild(l);
+        
+      }
+
+      new DragSelect({
+        selectables: document.querySelectorAll('.item'),
+        callback: e => toss(e)
+      });
+
+      function toss(k){
+        for(var i=0; i<k.length; i++){
+          document.getElementById("target").appendChild(k[i]);
+        }
+      }
+    </script>
+    <script  src="js/index.js"></script>
+
+ 
+</body>
+
+</html>
